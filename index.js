@@ -12,7 +12,6 @@ function init(getMail){
     .then(rep=>{
         const jsonData =JSON.parse(rep.substring(47).slice(0,-2));
         const rows=jsonData.table.rows
-        console.log(rows)
         if(Object.keys(rows).length>0){
             document.getElementById("getDetails").style.display="none";
             document.getElementById("name").innerHTML=rows[0].c[0].v
