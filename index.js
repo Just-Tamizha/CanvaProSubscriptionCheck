@@ -44,3 +44,9 @@ function ValidateEmail() {
       alert("Invalid email address!");
     }
   }
+document.getElementById("getEmail").addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("btnClick").click();
+    }
+});
