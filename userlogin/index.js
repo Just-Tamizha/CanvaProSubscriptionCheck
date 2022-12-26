@@ -16,7 +16,7 @@ if(getLoginAcess.get('userlogin')=="true"){
     document.getElementById("name").innerHTML=getLoginAcess.get('userName')
     var getTsResult=tsToChangeDate(parseInt(getLoginAcess.get('userTs')))
     let generateLink=`https://www.canva.com/brand/join?token=${getLoginAcess.get('userKey')}&referrer=team-invite`;
-    let checkoutLink=`/userlogin/paypalcheckout/index.html?userlogin=true&userName=${getLoginAcess.get('userName')}&userEmail=${getLoginAcess.get('userEmail')}&userTs=${getLoginAcess.get('userTs')}&userKey=${getLoginAcess.get('userKey')}`
+    let checkoutLink=`/CanvaProSubscriptionCheck/userlogin/paypalcheckout/index.html?userlogin=true&userName=${getLoginAcess.get('userName')}&userEmail=${getLoginAcess.get('userEmail')}&userTs=${getLoginAcess.get('userTs')}&userKey=${getLoginAcess.get('userKey')}`
 
     if(getTsResult.remainingDay<0){
         document.getElementById("status").innerHTML=`<button type="button" class="btn btn-success btn-sm">Active</button>`
