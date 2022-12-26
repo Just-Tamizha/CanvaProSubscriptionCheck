@@ -22,7 +22,7 @@ function getUser(userEmail,getSpinner){
             getSpinner.display="none";
             alert("User Not Found! Contact Admin")
             if (window.confirm("Are you sure you want to Register your Acount?")) {
-                window.location.href = "/CanvaProSubscriptionCheck/Registeration/index.html";
+                window.location.href = "/CanvaProSubscriptionCheck/registeration/index.html";
             }
         }}
     )
