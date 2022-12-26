@@ -1,5 +1,6 @@
 const getLoginAcess = new window.URLSearchParams(window.location.search)
 if (getLoginAcess.get('userlogin') == null) {
+    document.getElementById("userDetails").style.display="block";
     var seconds = 5;
     $("#dvCountDown").show();
     $("#lblCount").html(seconds);

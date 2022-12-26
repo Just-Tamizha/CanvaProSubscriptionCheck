@@ -12,7 +12,7 @@ function getUser(userEmail,getSpinner){
                 $("#lblCount").html(seconds);  
                 if (seconds == 0) {  
                     $("#dvCountDown").hide();  
-                    window.location.href = `/CanvaProSubscriptionCheck/userlogin/index.html?userlogin=true&userName=${res[0].name}&userEmail=${res[0].email}&userTs=${res[0].ts}&userKey=${res[0].key}`
+                    window.location.href = `./userlogin/index.html?userlogin=true&userName=${res[0].name}&userEmail=${res[0].email}&userTs=${res[0].ts}&userKey=${res[0].key}`
                 }  
             }, 800); 
         }else{
@@ -22,7 +22,7 @@ function getUser(userEmail,getSpinner){
             getSpinner.display="none";
             alert("User Not Found! Contact Admin")
             if (window.confirm("Are you sure you want to Register your Acount?")) {
-                window.location.href = "/CanvaProSubscriptionCheck/registeration/index.html";
+                window.location.href = "./registeration/index.html";
             }
         }}
     )
