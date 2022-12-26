@@ -14,11 +14,11 @@ if (getLoginAcess.get('userlogin') == null) {
 }
 if(getLoginAcess.get('userlogin')=="true"){
     document.getElementById("name").innerHTML=getLoginAcess.get('userName')
-    var getTsResult=tsToChangeDate(parseInt(getLoginAcess.get('userTs')))
+    var getTsResult=tsToChangeDate(getLoginAcess.get('userTs'))
     let generateLink=`https://www.canva.com/brand/join?token=${getLoginAcess.get('userKey')}&referrer=team-invite`;
     let checkoutLink=`/CanvaProSubscriptionCheck/userlogin/paypalcheckout/index.html?userlogin=true&userName=${getLoginAcess.get('userName')}&userEmail=${getLoginAcess.get('userEmail')}&userTs=${getLoginAcess.get('userTs')}&userKey=${getLoginAcess.get('userKey')}`
 
-    if(getTsResult.remainingDay<0){
+    if(getTsResult.remainingDay>0){
         document.getElementById("status").innerHTML=`<button type="button" class="btn btn-success btn-sm">Active</button>`
         document.getElementById("goto").innerHTML=`<button type="submit" class="btn btn-success btn-md" onclick="document.location.href='${generateLink}'">Go To Canva Pro 😍</button>`
     }else{
@@ -30,16 +30,19 @@ if(getLoginAcess.get('userlogin')=="true"){
 
 }
 function tsToChangeDate(getTs){
-    const todayDate = Date.now();
-    const olddate = new Date(getTs);
-    const purchasedDate=olddate.getDate() + '-' +  olddate.getMonth() + '-' + olddate.getFullYear();
-    const diffTime = olddate - todayDate;
-    let remainingDay = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    if(remainingDay<0){
-        remainingDay=0
+    if(getTs != "null"){
+        const todayDate = new Date().getTime();
+        let purchasedDate=new Date(parseInt(getTs)).toUTCString();
+        const diffTime = parseInt(getTs)+2592000000-todayDate;
+        let remainingDay = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        if(remainingDay<0){
+            remainingDay=0
+        }
+        return {purchasedDate,remainingDay};
     }
-    return {purchasedDate,remainingDay};
-}
-function redirect(getLink){
-    alert(getLink)
+    else{
+        let purchasedDate='-'
+        let remainingDay=0
+        return {purchasedDate,remainingDay}
+    }
 }

@@ -47,7 +47,7 @@
   
           createOrder: function(data, actions) {
             return actions.order.create({
-              purchase_units: [{"description":"Canva Pro Subscription","amount":{"currency_code":"USD","value":2}}]
+              purchase_units: [{"description":"Canva Pro Subscription","amount":{"currency_code":"USD","value":1}}]
             });
           },
   
@@ -61,7 +61,7 @@
               const element = document.getElementById('paypal-button-container');
               element.innerHTML = '';
               element.innerHTML = '<h3>Thank you for your payment!</h3>';
-  
+              afterPurchase(orderdata)
               // Or go to another URL:  actions.redirect('thank_you.html');
               
             });

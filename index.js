@@ -4,7 +4,7 @@ function getUser(userEmail,getSpinner){
         if(res[0].status==true){
             document.getElementById("getDetails").style.display="none";
             getSpinner.display="none";
-            var seconds = 5;  
+            var seconds = 3;  
             $("#dvCountDown").show();  
             $("#lblCount").html(seconds);  
             setInterval(function () {  
@@ -14,7 +14,7 @@ function getUser(userEmail,getSpinner){
                     $("#dvCountDown").hide();  
                     window.location.href = `/CanvaProSubscriptionCheck/userlogin/index.html?userlogin=true&userName=${res[0].name}&userEmail=${res[0].email}&userTs=${res[0].ts}&userKey=${res[0].key}`
                 }  
-            }, 1000); 
+            }, 800); 
         }else{
             document.getElementById("btnRegistration").style.display="block"
             document.getElementById("getEmail").disabled = false;
@@ -27,7 +27,6 @@ function getUser(userEmail,getSpinner){
         }}
     )
 }
-
 function ValidateEmail() {
     var email=$("#getEmail").val().toLowerCase()
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
@@ -42,7 +41,7 @@ function ValidateEmail() {
         let getResult;
         setTimeout(function() { 
             getUser(email,getSpinner);
-        }, 1000);
+        }, 800);
         // init(email);
     } else {
       alert("Invalid email address!");
