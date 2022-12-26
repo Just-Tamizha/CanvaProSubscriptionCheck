@@ -26,7 +26,7 @@ function getUser(userEmail,getSpinner,password,accessKey,getbtn){
 function ValidateEmail() {
     let email=$("#getEmail").val().toLowerCase()
     let password=$("#getPassword").val()
-    let accessKey=$("#getAccessKey").val().toLowerCase()
+    let accessKey=$("#getAccessKey").val()
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) && password !='' && accessKey !='') {
         document.getElementById("getEmail").disabled = true;
         document.getElementById("getPassword").disabled = true;
