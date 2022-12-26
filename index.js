@@ -1,45 +1,49 @@
-function init(getMail){
-    const sheetID ='14y4OxGf5wXix4E_qCOGrwBMpEluT35FbmITZtTaFDx0';
-    const base = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?`;
-    const sheetName = 'users';
-    const query = encodeURIComponent(`Select B,D,E,F,I where H like "${getMail}"`);
-    const url = `${base}&sheet=${sheetName}&tq=${query}`;
-    const data = [];
-    fetch(url)
-    .then(res =>res.text())
-    .then(rep=>{
-        const jsonData =JSON.parse(rep.substring(47).slice(0,-2));
-        const rows=jsonData.table.rows
-        if(Object.keys(rows).length>0){
+function getUser(userEmail,getSpinner){
+    let url="https://script.google.com/macros/s/AKfycbyA5Sd7CbX4p5fZAOMM-QX8TCjtYgK6RxaI31f7XYMC17ToAQq9Q-mcDaYoJsSsATrY/exec?email="+userEmail;
+    fetch(url).then(res=> res.json()).then(res =>{
+        if(res[0].status==true){
             document.getElementById("getDetails").style.display="none";
-            document.getElementById("name").innerHTML=rows[0].c[0].v
-            document.getElementById("date").innerHTML=rows[0].c[1].f
-            if(rows[0].c[2].v<=0){
-                document.getElementById("days").innerHTML=0
-            }else{
-                document.getElementById("days").innerHTML=rows[0].c[2].v
-            }
-            if(rows[0].c[3].v =='Active'){
-                document.getElementById("status").innerHTML=`<button type="button" class="btn btn-success btn-sm">${rows[0].c[3].v}</button>`
-            }else{
-                document.getElementById("status").innerHTML=`<button type="button" class="btn btn-danger btn-sm">${rows[0].c[3].v}</button>`
-            }
-            if(rows[0].c[3].v =='Active'){
-                document.getElementById("goto").innerHTML=`<a class="btn btn-success btn-sm" href="${rows[0].c[4].v}" role="button">Go to Canva</a>`
-            }else{
-                document.getElementById("goto").innerHTML=`<a class="btn btn-success btn-sm" href="${rows[0].c[4].v}" role="button">Go to Etsy</a>`
-            }
-            document.getElementById("userDetails").className="d-flex justify-content-center d-block"
-            
+            getSpinner.display="none";
+            var seconds = 5;  
+            $("#dvCountDown").show();  
+            $("#lblCount").html(seconds);  
+            setInterval(function () {  
+                seconds--;  
+                $("#lblCount").html(seconds);  
+                if (seconds == 0) {  
+                    $("#dvCountDown").hide();  
+                    window.location.href = `/userlogin/index.html?userlogin=true&userName=${res[0].name}&userEmail=${res[0].email}&userTs=${res[0].ts}&userKey=${res[0].key}`
+                }  
+            }, 1000); 
         }else{
+            document.getElementById("btnRegistration").style.display="block"
+            document.getElementById("getEmail").disabled = false;
+            document.getElementById("btnClick").style.display="block"
+            getSpinner.display="none";
             alert("User Not Found! Contact Admin")
-        }
-    })
+            if (window.confirm("Are you sure you want to Register your Acount?")) {
+                window.location.href = "/Registeration/index.html";
+            }
+        }}
+    )
 }
+
 function ValidateEmail() {
     var email=$("#getEmail").val().toLowerCase()
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-        init(email);
+        document.getElementById("getEmail").disabled = true;
+        let getbtn=document.getElementById("btnClick").style
+        getbtn.display="none";
+        document.getElementById("btnRegistration").style.display="none"
+        let getSpinner=document.getElementById("spinner").style
+        getSpinner.justifyContent="center";
+        getSpinner.paddingTop="30px";
+        getSpinner.display="block";
+        let getResult;
+        setTimeout(function() { 
+            getUser(email,getSpinner);
+        }, 1000);
+        // init(email);
     } else {
       alert("Invalid email address!");
     }
@@ -47,6 +51,6 @@ function ValidateEmail() {
 document.getElementById("getEmail").addEventListener("keyup", function(event) {
     if (event.keyCode === 13) {
         event.preventDefault();
-        document.getElementById("btnClick").click();
+        ValidateEmail();
     }
 });
