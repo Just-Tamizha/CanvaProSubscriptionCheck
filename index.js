@@ -1,3 +1,8 @@
+const getLoginAcess = new window.URLSearchParams(window.location.search)
+if(getLoginAcess.get('userlogin')=="true"){
+    $("#getEmail").val(getLoginAcess.get('userEmail'))
+    ValidateEmail();
+}
 function getUser(userEmail,getSpinner){
     let url="https://script.google.com/macros/s/AKfycbyA5Sd7CbX4p5fZAOMM-QX8TCjtYgK6RxaI31f7XYMC17ToAQq9Q-mcDaYoJsSsATrY/exec?email="+userEmail;
     fetch(url).then(res=> res.json()).then(res =>{
