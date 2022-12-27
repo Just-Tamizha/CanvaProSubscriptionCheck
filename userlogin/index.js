@@ -1,7 +1,7 @@
 const getLoginAcess = new window.URLSearchParams(window.location.search)
 console.log(getLoginAcess.get('userlogin'))
 if(getLoginAcess.get('userlogin')=="true"){
-    document.getElementById("userDetails").style.display="flex";
+    document.getElementById("userDetails").style.display="block";
     document.getElementById("name").innerHTML=getLoginAcess.get('userName')
     var getTsResult=tsToChangeDate(getLoginAcess.get('userTs'))
     let generateLink=`https://www.canva.com/brand/join?token=${getLoginAcess.get('userKey')}&referrer=team-invite`;

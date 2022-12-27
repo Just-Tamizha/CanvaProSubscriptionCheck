@@ -35,7 +35,7 @@ function ValidateEmail() {
                     $("#lblCount").html(seconds);  
                     if (seconds == 0) {  
                         $("#dvCountDown").hide();  
-                        window.location.href = "../index.html";  
+                        window.location.href = `../index.html?userlogin=true&userEmail=${email}`;  
                     }  
                 }, 1000); 
             }

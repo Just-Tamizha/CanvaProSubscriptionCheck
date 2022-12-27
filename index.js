@@ -19,7 +19,7 @@ function getUser(userEmail,getSpinner){
                     $("#dvCountDown").hide();  
                     window.location.href = `./userlogin/index.html?userlogin=true&userName=${res[0].name}&userEmail=${res[0].email}&userTs=${res[0].ts}&userKey=${res[0].key}`
                 }  
-            }, 800); 
+            }, 1000); 
         }else{
             document.getElementById("btnRegistration").style.display="block"
             document.getElementById("getEmail").disabled = false;
@@ -46,7 +46,7 @@ function ValidateEmail() {
         let getResult;
         setTimeout(function() { 
             getUser(email,getSpinner);
-        }, 800);
+        },1);
         // init(email);
     } else {
       alert("Invalid email address!");
