@@ -1,7 +1,8 @@
 const getLoginAcess = new window.URLSearchParams(window.location.search)
-if (getLoginAcess.get('userlogin') == null) {
-    document.getElementById("userDetails").style.display="block";
-    var seconds = 5;
+console.log(getLoginAcess.get('userlogin'))
+if (getLoginAcess.get('userlogin') == null || getLoginAcess.get('userlogin')=="false") {
+    document.getElementById("userDetails").style.display="none";
+    var seconds = 2;
     $("#dvCountDown").show();
     $("#lblCount").html(seconds);
     setInterval(function () {
@@ -14,10 +15,11 @@ if (getLoginAcess.get('userlogin') == null) {
     }, 1000);
 }
 if(getLoginAcess.get('userlogin')=="true"){
+    document.getElementById("userDetails").style.display="flex";
     document.getElementById("name").innerHTML=getLoginAcess.get('userName')
     var getTsResult=tsToChangeDate(getLoginAcess.get('userTs'))
     let generateLink=`https://www.canva.com/brand/join?token=${getLoginAcess.get('userKey')}&referrer=team-invite`;
-    let checkoutLink=`/CanvaProSubscriptionCheck/userlogin/paypalcheckout/index.html?userlogin=true&userName=${getLoginAcess.get('userName')}&userEmail=${getLoginAcess.get('userEmail')}&userTs=${getLoginAcess.get('userTs')}&userKey=${getLoginAcess.get('userKey')}`
+    let checkoutLink=`./paypalcheckout/index.html?userlogin=true&userName=${getLoginAcess.get('userName')}&userEmail=${getLoginAcess.get('userEmail')}&userTs=${getLoginAcess.get('userTs')}&userKey=${getLoginAcess.get('userKey')}`
 
     if(getTsResult.remainingDay>0){
         document.getElementById("status").innerHTML=`<button type="button" class="btn btn-success btn-sm">Active</button>`

@@ -1,10 +1,10 @@
 const getLoginAcess = new window.URLSearchParams(window.location.search)
 if (getLoginAcess.get('userlogin') == "true") {
-    document.getElementById("emailShow").innerHTML=`<h4>Make sure Purchasing for this Email ID<br><br>${getLoginAcess.get('userEmail')}</h4>`
+    document.getElementById("emailShow").innerHTML=`<h6>Make sure Purchasing for this Email ID<br><br>⏩ ${getLoginAcess.get('userEmail')} ⏪</h6>`
 }
 else{
-    document.getElementById("paypalCheckout").style.display="none"
-    var seconds = 5;
+    document.getElementById("smart-button-container").style.display="none"
+    var seconds = 2;
     $("#dvCountDown").show();
     $("#lblCount").html(seconds);
     setInterval(function () {
@@ -12,15 +12,16 @@ else{
         $("#lblCount").html(seconds);
         if (seconds == 0) {
             $("#dvCountDown").hide();
-            window.location.href = "/CanvaProSubscriptionCheck/index.html";
+            window.location.href = "../../index.html";
         }
     }, 1000);
 }
-function afterPurchase(orderData){
+function afterPurchase(){
     const todayDate = new Date().getTime();
     console.log(typeof orderData)
-    let url=`https://script.google.com/macros/s/AKfycbyjuNl7rY_lCouTIMT393wXsGTVJ_yUojDORCSZMfbn2GqVjaSQI-mmXEHyfdvAiYC6/exec?email=${getLoginAcess.get('userEmail')}&purchaseTs=${todayDate}`;
-    fetch(url).then(res=> res.json())
+    //let url=`https://script.google.com/macros/s/AKfycbyjuNl7rY_lCouTIMT393wXsGTVJ_yUojDORCSZMfbn2GqVjaSQI-mmXEHyfdvAiYC6/exec?email=${getLoginAcess.get('userEmail')}&purchaseTs=${todayDate}`;
+   // fetch(url)
+    // .then(res=> res.json())
     // .then(res =>{
     //     if(res[0].status==true){
     //         document.getElementById("getDetails").style.display="none";

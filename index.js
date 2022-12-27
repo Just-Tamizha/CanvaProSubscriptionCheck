@@ -4,7 +4,7 @@ function getUser(userEmail,getSpinner){
         if(res[0].status==true){
             document.getElementById("getDetails").style.display="none";
             getSpinner.display="none";
-            var seconds = 3;  
+            var seconds = 2;  
             $("#dvCountDown").show();  
             $("#lblCount").html(seconds);  
             setInterval(function () {  

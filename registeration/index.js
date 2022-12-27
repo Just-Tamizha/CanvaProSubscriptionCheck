@@ -27,7 +27,7 @@ function ValidateEmail() {
                 document.getElementById("getDetails").style.display="none";
                 document.getElementById("actCreated").style.display="block";
                 getSpinner.display="none";
-                var seconds = 5;  
+                var seconds = 2;  
                 $("#dvCountDown").show();  
                 $("#lblCount").html(seconds);  
                 setInterval(function () {  
